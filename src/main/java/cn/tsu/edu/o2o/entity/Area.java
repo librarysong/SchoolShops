@@ -2,6 +2,12 @@ package cn.tsu.edu.o2o.entity;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author 宋维飞
+ *
+ */
+
 public class Area {
 	 
 	//ID
