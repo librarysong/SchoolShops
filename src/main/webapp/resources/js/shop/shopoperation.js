@@ -5,7 +5,6 @@
 $(function(){
 	var initUrl='/SchoolShops/shopadmin/getshopinitinfo';
 	var registerShopUrl='/SchoolShops/shopadmin/registershop';
-	alert(initUrl);
 	getShopInitInfo();
 	function getShopInitInfo(){
 		$.getJSON(initUrl,function(data){
@@ -18,7 +17,7 @@ $(function(){
 				});
 			data.areaList.map(function(item,index){
 				
-				tempAreaHtml+='<option data-id>="'+item.areaId+'">'
+				tempAreaHtml+='<option data-id="'+item.areaId+'">'
 				+item.areaName+'</option>';
 			});
 			$('#shop-category').html(tempHtml);
@@ -30,7 +29,7 @@ $(function(){
 			shop.shopName=$('#shop-name').val();
 			shop.shopAddr=$('#shop-addr').val();
 			shop.phone=$('#shop-phone').val();
-			shop.shopDesc=$('shop-desc').val();
+			shop.shopDesc=$('#shop-desc').val();
 			shop.shopCategory={
 					shopCategoryId:$('#shop-category').find('option').not(function(){
 						return !this.selected;
@@ -45,13 +44,22 @@ $(function(){
 			var formData=new FormData();
 			formData.append('shopImg',shopImg);
 			formData.append('shopStr',JSON.stringify(shop));
+			
+			var verifyCodeActual=$('#j_captcha').val();
+			if(!verifyCodeActual){
+				$.toast("请输入验证码!");
+				return;
+			}
+			
+			formData.append('verifyCodeActual',verifyCodeActual);
+			
 			$.ajax({
 				
 				url:registerShopUrl,
-				type:'PSOT',
+				type:'POST',
 				data:formData,
 				contentType:false,
-				porcessData:false,
+				processData:false,
 				cache:false,
 				success:function(data){
 					if(data.success){
@@ -59,6 +67,7 @@ $(function(){
 					}else{
 						$.toast("提交失败!"+data.errMsg);
 					}
+					$('#captcha_img').click();
 				}
 				
 			});

@@ -61,6 +61,11 @@
 		</init-param>
 	</servlet>
 	
+		<!-- 映射的url -->
+	<servlet-mapping>
+		<servlet-name>Kaptcha</servlet-name>
+		<url-pattern>/Kaptcha</url-pattern>
+	</servlet-mapping>
 	
 	
 	<servlet>
