@@ -81,4 +81,22 @@ public class ImageUtil {
 		String nowTimeStr = sDateFormat.format(new Date()); // 当前时间
 		return nowTimeStr + rannum;
 	}
+	
+	//删除图片
+	public static void deleteFileOrPath(String storePath)
+	{
+		File fileOrPath=new File(PathUtil.getImgBasePath()+storePath);
+		if(fileOrPath.exists())
+		{
+			if(fileOrPath.isDirectory())
+			{
+				File files[]=fileOrPath.listFiles();
+				for(int i=0;i<files.length;i++)
+				{
+					files[i].delete();
+				}
+			}
+			fileOrPath.delete();
+		}
+	}
 }
