@@ -29,7 +29,7 @@ $(function () {
 
 	function goShop(status, id) {
 		if (status != 0 && status != -1) {
-			return '<a href="/SchoolShops/shop/shopmanage?shopId='+ id +'">进入</a>';
+			return '<a href="/SchoolShops/shopadmin/shopmanagement?shopId='+ id +'">进入</a>';
 		} else {
 			return '';
 		}
