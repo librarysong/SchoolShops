@@ -12,7 +12,14 @@ import cn.tsu.edu.o2o.exceptions.ShopOperationException;
  *
  */
 public interface ShopService {
-	
+	/**
+	 * 根据shopcodition分页查询数据
+	 * @param shopCondition
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
+	ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize);
 	/**
 	 * 查询指定店铺信息
 	 * 
