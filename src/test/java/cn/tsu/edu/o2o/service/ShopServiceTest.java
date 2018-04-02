@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import cn.tsu.edu.o2o.BaseTest;
+import cn.tsu.edu.o2o.dto.ImageHolder;
 import cn.tsu.edu.o2o.dto.ShopExecution;
 import cn.tsu.edu.o2o.entity.Area;
 import cn.tsu.edu.o2o.entity.PersonInfo;
@@ -48,7 +49,8 @@ public class ShopServiceTest extends BaseTest {
 		shop.setShopName("修改后的店铺名称");
 		File shopImg=new File("E:/image/dabai.jpg");
 		InputStream is=new FileInputStream(shopImg);
-		ShopExecution shopExecution=shopService.modifyShop(shop, is, "dabai.jpg");
+		ImageHolder imageHolder=new ImageHolder("dabai.jpg", is);
+		ShopExecution shopExecution=shopService.modifyShop(shop,imageHolder);
 		System.out.println("新的图片地址为:"+shopExecution.getShop().getShopImg());
 		
 	}
@@ -77,7 +79,8 @@ public class ShopServiceTest extends BaseTest {
 	    shop.setAdvice("审核中");
 	    File shopImg=new File("E:/image/xiaohuangren.jpg");
 	    InputStream is=new FileInputStream(shopImg);
-	    ShopExecution se=shopService.addShop(shop, is,shopImg.getName());
+	    ImageHolder imageHolder=new ImageHolder(shopImg.getName(), is);
+	    ShopExecution se=shopService.addShop(shop, imageHolder);
 	    assertEquals(ShopStateEnum.CHECK.getState(), se.getState());
 	}
 

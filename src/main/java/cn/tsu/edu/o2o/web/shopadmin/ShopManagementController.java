@@ -19,6 +19,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import cn.tsu.edu.o2o.dto.ImageHolder;
 import cn.tsu.edu.o2o.dto.ShopExecution;
 import cn.tsu.edu.o2o.entity.Area;
 import cn.tsu.edu.o2o.entity.PersonInfo;
@@ -184,7 +185,8 @@ public class ShopManagementController {
 			shop.setOwner(owner);
 			ShopExecution se;
 			try {
-				se = shopService.addShop(shop,shopImg.getInputStream(),shopImg.getOriginalFilename());
+				ImageHolder imageHolder=new ImageHolder(shopImg.getOriginalFilename(), shopImg.getInputStream());
+				se = shopService.addShop(shop,imageHolder);
 				if(se.getState()==ShopStateEnum.CHECK.getState()) {
 					modelMap.put("success", true);
 				}else {
@@ -252,10 +254,11 @@ public class ShopManagementController {
 			try {
 				if(shopImg==null)
 				{
-					se = shopService.modifyShop(shop, null, null);
+					se = shopService.modifyShop(shop, null);
 				}else
 				{
-					se = shopService.modifyShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
+					ImageHolder imageHolder=new ImageHolder(shopImg.getOriginalFilename(), shopImg.getInputStream());
+					se = shopService.modifyShop(shop,imageHolder);
 				}
 				
 				if(se.getState()==ShopStateEnum.SUCCESS.getState()) {

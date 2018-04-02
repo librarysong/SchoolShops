@@ -2,6 +2,7 @@ package cn.tsu.edu.o2o.service;
 
 import java.io.InputStream;
 
+import cn.tsu.edu.o2o.dto.ImageHolder;
 import cn.tsu.edu.o2o.dto.ShopExecution;
 import cn.tsu.edu.o2o.entity.Shop;
 import cn.tsu.edu.o2o.exceptions.ShopOperationException;
@@ -41,8 +42,8 @@ public interface ShopService {
 	 * @return
 	 * @throws RuntimeException
 	 */
-	 ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream,String fileName) throws ShopOperationException;
+	 ShopExecution modifyShop(Shop shop,ImageHolder thumbnail) throws ShopOperationException;
 	
 	
-     ShopExecution addShop(Shop shop,InputStream shopImgInputStream,String fileName);
+     ShopExecution addShop(Shop shop,ImageHolder thumbnail);
 }
