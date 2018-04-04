@@ -9,13 +9,43 @@ import cn.tsu.edu.o2o.exceptions.ProductOperationException;
 
 public interface ProductService {
 	
+	/**
+	 * 查询商品列表并分页，可输入的条件有:商品名(模糊) 商品状态  店铺id   商品类别
+	 * @param productCondition
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
 	
-/*	ProductExecution getProductList(Product productCondition, int pageIndex, int pageSize);
-
-	Product getProductById(long productId);*/
+	ProductExecution getProductList(Product productCondition, int pageIndex, int pageSize);
+   /**
+    * 通过商品ID查询唯一的商品信息
+    * @param productId
+    * @return
+    */
+	Product getProductById(long productId);
+	
+	/**
+	 * 添加商品信息以及图片
+	 * @param product
+	 * @param thumbnail
+	 * @param thumbnailList
+	 * @return
+	 * @throws ProductOperationException
+	 */
 
 	ProductExecution addProduct(Product product, ImageHolder thumbnail,List<ImageHolder> thumbnailList)
 			throws ProductOperationException;
 
+	/**
+	 * 修改商品信息
+	 * @param product
+	 * @param thumbnail
+	 * @param thumbnailList
+	 * @return
+	 * @throws ProductOperationException
+	 */
+	ProductExecution modifyProduct(Product product, ImageHolder thumbnail,List<ImageHolder> thumbnailList)
+	        throws ProductOperationException;
 
 }

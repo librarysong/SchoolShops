@@ -1,7 +1,5 @@
 package cn.tsu.edu.o2o.service;
 
-import java.io.InputStream;
-
 import cn.tsu.edu.o2o.dto.ImageHolder;
 import cn.tsu.edu.o2o.dto.ShopExecution;
 import cn.tsu.edu.o2o.entity.Shop;

@@ -40,12 +40,12 @@ public class ProductImgDaoTest extends BaseTest {
 		assertEquals(2, effectedNum);
 	}
 
-/*	@Test
+	@Test
 	public void testCDeleteProductImgByProductId() throws Exception {
 		long productId = 1;
 		int effectedNum = productImgDao.deleteProductImgByProductId(productId);
 		assertEquals(2, effectedNum);
 	}
-	*/
+	
 
 }

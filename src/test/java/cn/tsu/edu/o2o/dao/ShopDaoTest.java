@@ -23,20 +23,16 @@ public class ShopDaoTest extends BaseTest {
 	@Test
 	public void testQueryShopListAndCount() {
 		Shop shopCondition=new Shop();
-		PersonInfo owner=new PersonInfo();
-		owner.setUserId(1L);
-		shopCondition.setOwner(owner);
-		List<Shop> shopList = shopDao.queryShopList(shopCondition, 0, 5);
+		ShopCategory childCategory=new ShopCategory();
+		ShopCategory parenCategory=new ShopCategory();
+		parenCategory.setShopCategoryId(5L);
+		childCategory.setParent(parenCategory);
+		shopCondition.setShopCategory(childCategory);
+		List<Shop> shopList = shopDao.queryShopList(shopCondition, 0, 4);
 		int count=shopDao.queryShopCount(shopCondition);
 		System.out.println("店铺列表的大小:"+shopList.size());
 		System.out.println("店铺总数:"+count);
-		ShopCategory sc=new ShopCategory();
-		sc.setShopCategoryId(1L);
-		shopCondition.setShopCategory(sc);
-		shopList = shopDao.queryShopList(shopCondition, 0, 2);
-		count=shopDao.queryShopCount(shopCondition);
-		System.out.println("新店铺列表的大小:"+shopList.size());
-		System.out.println("新店铺总数:"+count);
+
 	}
 	
 	@Test
