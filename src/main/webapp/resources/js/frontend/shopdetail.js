@@ -2,7 +2,7 @@ $(function(){
 	
 	var loading = false;
 	var maxItems = 20;
-	var pageSize = 3;
+	var pageSize = 10;
 
 	var listUrl = '/SchoolShops/frontend/listproductsbyshop';
 

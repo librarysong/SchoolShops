@@ -1,3 +1,7 @@
+.mb {
+    margin-bottom: .5rem;
+}
+
 .row-product-category {
     border: 1px solid #999;
     padding: .5rem;

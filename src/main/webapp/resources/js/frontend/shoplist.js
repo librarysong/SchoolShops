@@ -2,7 +2,7 @@ $(function(){
 	
 	var loading = false;
 	var maxItems = 999;
-	var pageSize = 3;
+	var pageSize = 100;
 	var listUrl = '/SchoolShops/frontend/listshops';
 	var searchDivUrl = '/SchoolShops/frontend/listshopspageinfo';
 	var pageNum = 1;
@@ -88,9 +88,21 @@ $(function(){
 				if (total >= maxItems) {
 					// 隐藏加载提示符
 					$('.infinite-scroll-preloader').hide();
+					
+					$.detachInfiniteScroll($('.infinite-scroll'));
+					// 删除加载提示符
+					$('.infinite-scroll-preloader').remove();
 				}else{
 					$('.infinite-scroll-preloader').show();
 				}
+				
+				/*if (total >= maxItems) {
+					// 加载完毕，则注销无限加载事件，以防不必要的加载
+					$.detachInfiniteScroll($('.infinite-scroll'));
+					// 删除加载提示符
+					$('.infinite-scroll-preloader').remove();
+				}*/
+				
 				pageNum += 1;
 				loading = false;
 				$.refreshScroller();
@@ -115,6 +127,7 @@ $(function(){
 			'click',
 			'.button',
 			function(e) {
+				$('.list-div').empty();
 				if (parentId) {// 如果传递过来的是一个父类下的子类
 					shopCategoryId = e.target.dataset.categoryId;
 					if ($(e.target).hasClass('button-fill')) {
@@ -128,6 +141,7 @@ $(function(){
 					pageNum = 1;
 					addItems(pageSize, pageNum);
 				} else {// 如果传递过来的父类为空，则按照父类查询
+					$('.list-div').empty();
 					parentId = e.target.dataset.categoryId;
 					if ($(e.target).hasClass('button-fill')) {
 						$(e.target).removeClass('button-fill');
